@@ -1,0 +1,65 @@
+.list-container {
+  display: flex;
+  justify-content: center;
+}
+
+.thought {
+  box-shadow: 8px 8px 2px black;
+  padding: 14px 22px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  border: 1px solid black;
+  font-weight: 400;
+  width: 460px;
+}
+
+.thought-list button {
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 6px;
+  padding-bottom: 3px;
+  border-radius: 100px;
+  margin-right: 6px;
+  border: none;
+  animation: pulsate 1.7s infinite;
+  font-size: 26px;
+}
+
+.pink-heart {
+  background-color: pink;
+}
+
+.heart-text {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: 100;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.timestamp {
+  margin-left: auto;
+}
+
+/* Add this CSS to your style.css file */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 470px) {
+  .form-container {
+    height: 320px;
+  }
+  .thought {
+    width: 230px;
+    margin-left: 10px;
+  }
+}
