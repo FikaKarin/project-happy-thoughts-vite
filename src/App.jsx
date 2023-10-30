@@ -2,26 +2,35 @@ import React, { useState, useEffect } from 'react';
 import ThoughtForm from './components/ThoughtsForm/ThoughtsForm';
 import ThoughtList from './components/ThoughtList/ThoughtList';
 import Header from './components/Header/Header';
+import './components/ThoughtsForm/style.css';
 
 const API_URL = 'https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts';
 
 export default function App() {
   const [thoughts, setThoughts] = useState([]);
+  const [likedThoughts, setLikedThoughts] = useState(new Set()); // Use Set to store liked thought IDs
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch recent thoughts from the API
-    fetch(API_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        // Add a timestamp property to each thought in the API response
-        const thoughtsWithTimestamp = data.map((thought) => ({
-          ...thought,
-          timestamp: new Date(thought.createdAt).toISOString(), // assuming createdAt is the property from API response
-        }));
-        setThoughts(thoughtsWithTimestamp);
-      });
-  }, []); // Empty dependency array ensures this effect runs once after the first render
-
+    setLoading(true);
+    setTimeout(() => {
+      fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          const thoughtsWithTimestamp = data.map((thought) => ({
+            ...thought,
+            timestamp: new Date(thought.createdAt).toISOString(),
+          }));
+          setThoughts(thoughtsWithTimestamp);
+        })
+        .catch((error) => {
+          console.error('Error fetching thoughts:', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, 2000);
+  }, []);
 
   const handleFormSubmit = (message) => {
     // Send POST request to add a new thought
@@ -32,10 +41,19 @@ export default function App() {
       },
       body: JSON.stringify({ message }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Failed to post thought');
+      })
       .then((newThought) => {
-        // Add the new thought to the thoughts array
         setThoughts([newThought, ...thoughts]);
+        // Update likedThoughts Set with the ID of the new thought
+        setLikedThoughts(new Set(likedThoughts.add(newThought._id)));
+      })
+      .catch((error) => {
+        console.error('Error posting thought:', error);
       });
   };
 
@@ -46,24 +64,38 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((updatedThought) => {
-        // Update the hearts property of the liked thought
         const updatedThoughts = thoughts.map((thought) =>
-          thought._id === updatedThought._id ? { ...thought, hearts: updatedThought.hearts } : thought
+          thought._id === updatedThought._id
+            ? { ...thought, hearts: updatedThought.hearts }
+            : thought
         );
-        
-        // Update the thoughts array with the liked thought
         setThoughts(updatedThoughts);
+        // Update likedThoughts Set with the ID of the liked thought
+        setLikedThoughts(new Set(likedThoughts.add(updatedThought._id)));
+      })
+      .catch((error) => {
+        console.error('Error liking thought:', error);
       });
-  };  
+  };
 
   return (
-    <div className='container'>
-      <Header />
-      {/* Form to post new thoughts */}
-      <ThoughtForm onFormSubmit={handleFormSubmit} />
-
-      {/* List of thoughts */}
-      <ThoughtList thoughts={thoughts} onLike={handleLike} />
-    </div>
+    <>
+      {loading ? (
+        <div className='loading'>
+          <div>Loading...</div>
+          <div className='spinner' />
+        </div>
+      ) : (
+        <div className='container'>
+          <Header />
+          <ThoughtForm onFormSubmit={handleFormSubmit} />
+          <ThoughtList
+            thoughts={thoughts}
+            onLike={handleLike}
+            likedThoughts={likedThoughts}
+          />
+        </div>
+      )}
+    </>
   );
 }
