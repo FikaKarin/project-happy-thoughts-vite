@@ -50,7 +50,7 @@ export default function ThoughtForm({ onFormSubmit }) {
         />
         <div className='character-count'>{newThought.length}/140</div>
         <button className='send' type='submit'>
-          ❤️ Send Happy Thought ❤️
+          <span>❤️</span> Send Happy Thoughts <span>❤️</span>
         </button>
       </form>
       {/* Use ErrorMessage component to display error */}

@@ -5,13 +5,14 @@
 
 .thought {
   box-shadow: 8px 8px 2px black;
-  padding: 14px 22px;
-  margin-top: 64px;
+  padding: 14px 18px;
+  padding-bottom: 22px;
+  margin-top: 30px;
   margin-bottom: 16px;
   border: 1px solid black;
   font-weight: 400;
-  width: 460px;
-  
+  width: 470px;
+  font-size: 18px;
 }
 
 .thought-list button {
@@ -24,6 +25,7 @@
   border: none;
   animation: pulsate 1.7s infinite;
   font-size: 26px;
+  background-color: rgba(128, 128, 128, 0.32);
 }
 
 .pink-heart {
@@ -55,12 +57,4 @@
   }
 }
 
-@media (max-width: 470px) {
-  .form-container {
-    height: 320px;
-  }
-  .thought {
-    width: 230px;
-    margin-left: 10px;
-  }
-}
+

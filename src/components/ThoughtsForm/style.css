@@ -11,7 +11,7 @@ form {
   padding: 12px 32px;
   background-color: rgba(212, 207, 208, 0.441);
   font-weight: bolder;
-  width: 465px;
+  width: 470px;
 }
 
 label {
@@ -21,7 +21,8 @@ label {
 
 input {
   margin-top: 16px;
-  padding: 0 0 50px 0;
+  padding: 0 0 40px 0;
+  width: 470px;
 }
 
 [placeholder] {
@@ -36,15 +37,24 @@ input {
 }
 
 .send {
-  width: 240px;
-  padding: 8px;
-  justify-content: flex-start;
+  width: 260px;
+  padding: 4px 8px;
   border-radius: 32px;
   background-color: #ffb7d2;
   border: none;
   font-size: 18px;
-  margin-top: 18px;
+  margin-top: 10px;
   margin-bottom: 10px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+span {
+  font-size: 24px;
 }
 
 .error-message {
@@ -117,4 +127,14 @@ input {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 470px) {
+  .form-container {
+    height: 320px;
+  }
+  .thought {
+    width: 230px;
+    margin-left: 10px;
+  }
 }
