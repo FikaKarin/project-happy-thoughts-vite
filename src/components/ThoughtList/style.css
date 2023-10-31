@@ -29,7 +29,7 @@
 }
 
 .pink-heart {
-  background-color: pink;
+  background-color: pink !important;
 }
 
 .heart-text {
@@ -57,4 +57,14 @@
   }
 }
 
-
+.liked-thoughts-count {
+  display: flex;
+  position: absolute;
+  width: 140px;
+  justify-content: center;
+  background-color: #fec3d8;
+  padding: 10px;
+  margin: 18px;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.241);
+}

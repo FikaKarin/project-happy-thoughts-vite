@@ -18,19 +18,21 @@ const calculateTimeDifference = (timestamp) => {
   } else return `less than a minute ago`;
 };
 
-export default function ThoughtList({ thoughts, onLike }) {
-  const [likedThoughts, setLikedThoughts] = useState([]);
+export default function ThoughtList({ thoughts, onLike, likedThoughts }) {
+
+    // Convert the likedThoughts Set to an array to trigger re-renders
+    const likedThoughtsArray = Array.from(likedThoughts);
 
   const handleLikeClick = (thoughtId) => {
     // Call the onLike function passed from props with isLiked set to true
     onLike(thoughtId, true);
-
-    // Add the thoughtId to the likedThoughts state
-    setLikedThoughts([...likedThoughts, thoughtId]);
   };
 
   return (
     <div className='list-container'>
+        <div className='liked-thoughts-count'>
+        Liked Thoughts: {likedThoughtsArray.length}
+      </div>
       <div className='thought-list'>
         {thoughts.map((thought) => (
           <div key={thought._id} className='thought'>
@@ -38,7 +40,7 @@ export default function ThoughtList({ thoughts, onLike }) {
             <div className='heart-text'>
               <button
                 onClick={() => handleLikeClick(thought._id)}
-                className={likedThoughts.includes(thought._id) ? 'pink-heart' : ''}
+                className={likedThoughtsArray.includes(thought._id) ? 'pink-heart' : ''}
               >
                 ❤️
               </button>
