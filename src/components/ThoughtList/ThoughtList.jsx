@@ -19,9 +19,8 @@ const calculateTimeDifference = (timestamp) => {
 };
 
 export default function ThoughtList({ thoughts, onLike, likedThoughts }) {
-
-    // Convert the likedThoughts Set to an array to trigger re-renders
-    const likedThoughtsArray = Array.from(likedThoughts);
+  // Convert the likedThoughts Set to an array to trigger re-renders
+  const likedThoughtsArray = Array.from(likedThoughts);
 
   const handleLikeClick = (thoughtId) => {
     // Call the onLike function passed from props with isLiked set to true
@@ -30,7 +29,7 @@ export default function ThoughtList({ thoughts, onLike, likedThoughts }) {
 
   return (
     <div className='list-container'>
-        <div className='liked-thoughts-count'>
+      <div className='liked-thoughts-count'>
         Liked Thoughts: {likedThoughtsArray.length}
       </div>
       <div className='thought-list'>
@@ -40,7 +39,9 @@ export default function ThoughtList({ thoughts, onLike, likedThoughts }) {
             <div className='heart-text'>
               <button
                 onClick={() => handleLikeClick(thought._id)}
-                className={likedThoughtsArray.includes(thought._id) ? 'pink-heart' : ''}
+                className={
+                  likedThoughtsArray.includes(thought._id) ? 'pink-heart' : ''
+                }
               >
                 ❤️
               </button>
