@@ -46,7 +46,7 @@ export default function ThoughtForm({ onFormSubmit }) {
           value={newThought}
           onChange={handleInputChange}
           maxLength={140}
-          placeholder='It´s a bad day, not a bad life...'
+          placeholder="'If music be the food of love, play on.' - William Shapespear"
         />
         <div className='character-count'>{newThought.length}/140</div>
         <button className='send' type='submit'>

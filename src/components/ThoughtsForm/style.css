@@ -22,12 +22,20 @@ label {
 input {
   margin-top: 16px;
   padding: 0 0 40px 0;
-  width: 470px;
+  width: 100%;
+  max-width: 470px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent overflow of placeholder text */
+  padding-top: 4px;
 }
 
-[placeholder] {
+input::placeholder {
   font-family: 'Courier New', Courier, monospace;
   font-size: 18px;
+  max-width: 100%; /* Adjust the value as needed to prevent overflow */
+  text-wrap: wrap;
+  text-align: center;
+  color: black;
 }
 
 .character-count {
@@ -38,7 +46,7 @@ input {
 
 .send {
   width: 260px;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 32px;
   background-color: #ffb7d2;
   border: none;
@@ -50,7 +58,7 @@ input {
 button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 span {
@@ -125,8 +133,12 @@ span {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 470px) {
