@@ -4,6 +4,14 @@
   </a>
 </h1>
 
+THIS PROJECT WAS MADE BY KARIN LUNDQVIST
+
+https://beamish-heliotrope-9dc057.netlify.app/
+
+Design is set by Technigo team and needs to be matched as close as possible:
+
+<img width="638" alt="Skärmavbild 2023-10-31 kl  09 38 23" src="https://github.com/FikaKarin/project-happy-thoughts-vite/assets/91525357/66d081de-a4f8-4ed5-bd44-3ebea24cbced">
+
 # Unhappy thoughts Project
 
 In this week's project, you'll be able to practice your React state skills by fetching and posting data to an API.
