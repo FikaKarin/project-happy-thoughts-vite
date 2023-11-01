@@ -38,29 +38,26 @@ export default function App() {
     }, 2000); // Wait for 2 seconds before fetching data (simulating loading time) - only for showing teacher this part of assignment.
   }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
 
-  // Function to handle form submission and add a new thought
   const handleFormSubmit = (message) => {
     fetch(API_URL, {
-      method: 'POST', // Send a POST request to the API
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // Specify content type as JSON
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }), // Convert message to JSON format and send in the request body
+      body: JSON.stringify({ message }),
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // If response is successful, parse JSON response
+          return response.json();
         }
-        throw new Error('Failed to post thought'); // If response is not successful, throw an error
+        throw new Error('Failed to post thought');
       })
       .then((newThought) => {
-        // Update thoughts state with the new thought and prepend it to the existing thoughts
         setThoughts([newThought, ...thoughts]);
-        // Update likedThoughts Set with the ID of the new thought
-        setLikedThoughts(new Set(likedThoughts.add(newThought._id)));
+        // Do NOT add the new thought's ID to likedThoughts here.
       })
       .catch((error) => {
-        console.error('Error posting thought:', error); // Log any errors that occur during posting
+        console.error('Error posting thought:', error);
       });
   };
 
