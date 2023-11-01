@@ -4,80 +4,90 @@ import ThoughtList from './components/ThoughtList/ThoughtList';
 import Header from './components/Header/Header';
 import './components/ThoughtsForm/style.css';
 
+// Define the API endpoint URL
 const API_URL = 'https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts';
 
 export default function App() {
-  const [thoughts, setThoughts] = useState([]);
-  const [likedThoughts, setLikedThoughts] = useState(new Set()); // Use Set to store liked thought IDs
-  const [loading, setLoading] = useState(true);
+  // State variables for managing thoughts, liked thoughts, and loading status
+  const [thoughts, setThoughts] = useState([]); // Array to store thoughts
+  const [likedThoughts, setLikedThoughts] = useState(new Set()); // Set to store liked thought IDs
+  const [loading, setLoading] = useState(true); // Loading status indicator
 
+  // useEffect hook to fetch thoughts from the API when the component mounts
   useEffect(() => {
-    setLoading(true);
+    setLoading(true); // Set loading status to true while fetching data
     setTimeout(() => {
+      // Simulate loading delay with setTimeout for 2 seconds
       fetch(API_URL)
-        .then((response) => response.json())
+        .then((response) => response.json()) // Parse the JSON response
         .then((data) => {
+          // Map the fetched data and add timestamp to each thought
           const thoughtsWithTimestamp = data.map((thought) => ({
             ...thought,
             timestamp: new Date(thought.createdAt).toISOString(),
           }));
+          // Update thoughts state with fetched thoughts
           setThoughts(thoughtsWithTimestamp);
         })
         .catch((error) => {
-          console.error('Error fetching thoughts:', error);
+          console.error('Error fetching thoughts:', error); // Log any errors that occur during fetching
         })
         .finally(() => {
-          setLoading(false);
+          setLoading(false); // Set loading status to false after fetching data (whether successful or not)
         });
-    }, 2000);
-  }, []);
+    }, 2000); // Wait for 2 seconds before fetching data (simulating loading time) - only for showing teacher this part of assignment.
+  }, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
 
+  // Function to handle form submission and add a new thought
   const handleFormSubmit = (message) => {
-    // Send POST request to add a new thought
     fetch(API_URL, {
-      method: 'POST',
+      method: 'POST', // Send a POST request to the API
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', // Specify content type as JSON
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({ message }), // Convert message to JSON format and send in the request body
     })
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.json(); // If response is successful, parse JSON response
         }
-        throw new Error('Failed to post thought');
+        throw new Error('Failed to post thought'); // If response is not successful, throw an error
       })
       .then((newThought) => {
+        // Update thoughts state with the new thought and prepend it to the existing thoughts
         setThoughts([newThought, ...thoughts]);
         // Update likedThoughts Set with the ID of the new thought
         setLikedThoughts(new Set(likedThoughts.add(newThought._id)));
       })
       .catch((error) => {
-        console.error('Error posting thought:', error);
+        console.error('Error posting thought:', error); // Log any errors that occur during posting
       });
   };
 
+  // Function to handle liking a thought
   const handleLike = (thoughtId) => {
-    // Send POST request to like a thought
     fetch(`${API_URL}/${thoughtId}/like`, {
-      method: 'POST',
+      method: 'POST', // Send a POST request to like a thought
     })
-      .then((response) => response.json())
+      .then((response) => response.json()) // Parse the JSON response
       .then((updatedThought) => {
+        // Map through thoughts and update the one with the matching ID with new heart count
         const updatedThoughts = thoughts.map((thought) =>
           thought._id === updatedThought._id
             ? { ...thought, hearts: updatedThought.hearts }
             : thought
         );
+        // Update thoughts state with updated thoughts
         setThoughts(updatedThoughts);
         // Update likedThoughts Set with the ID of the liked thought
         setLikedThoughts(new Set(likedThoughts.add(updatedThought._id)));
       })
       .catch((error) => {
-        console.error('Error liking thought:', error);
+        console.error('Error liking thought:', error); // Log any errors that occur during liking
       });
   };
 
+  // Render components based on loading status and return the JSX
   return (
     <>
       {loading ? (
@@ -88,7 +98,9 @@ export default function App() {
       ) : (
         <div className='container'>
           <Header />
+          {/* Pass handleFormSubmit function as a prop to the ThoughtForm component */}
           <ThoughtForm onFormSubmit={handleFormSubmit} />
+          {/* Pass thoughts, handleLike function, and likedThoughts Set as props to the ThoughtList component */}
           <ThoughtList
             thoughts={thoughts}
             onLike={handleLike}
