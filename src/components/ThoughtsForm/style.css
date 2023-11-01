@@ -11,7 +11,7 @@ form {
   padding: 12px 32px;
   background-color: rgba(212, 207, 208, 0.441);
   font-weight: bolder;
-  width: 470px;
+  width: 550px;
 }
 
 label {
@@ -23,7 +23,7 @@ input {
   margin-top: 16px;
   padding: 0 0 40px 0;
   width: 100%;
-  max-width: 470px;
+  max-width: 550px;
   box-sizing: border-box;
   overflow: hidden; /* Prevent overflow of placeholder text */
   padding-top: 4px;
