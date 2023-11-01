@@ -32,6 +32,15 @@ export default function ThoughtForm({ onFormSubmit }) {
       setError('Thought cannot be empty'); // Set error message if thought is empty
       return;
     }
+    if (newThought.length < 5) {
+      setError('Thought cannot be less than 5 characters'); // Set error message if thought is smaller than 5 characters
+      return;
+    }
+    if (newThought.length > 140) {
+      setError('Thought cannot be more than 140 characters'); // Set error message if thought is to big
+      return;
+    }
+
     onFormSubmit(newThought); // Call the onFormSubmit function passed from props with the new thought
     setNewThought(''); // Clear the input field after submission
     setSubmitted(true); // Set submitted to true when the form is submitted for animation
@@ -53,11 +62,16 @@ export default function ThoughtForm({ onFormSubmit }) {
           type='text'
           value={newThought}
           onChange={handleInputChange}
-          maxLength={140}
           placeholder="'If music be the food of love, play on.' - William Shapespear"
         />
         {/* Display character count and limit it to 140 */}
-        <div className='character-count'>{newThought.length}/140</div>
+        <div
+          className={`character-count ${
+            newThought.length > 140 ? 'over-limit' : ''
+          }`}
+        >
+          {newThought.length}/140
+        </div>
         {/* Submit button with heart symbols */}
         <button className='send' type='submit'>
           <span>❤️</span> Send Happy Thoughts <span>❤️</span>

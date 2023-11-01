@@ -150,3 +150,7 @@ span {
     margin-left: 10px;
   }
 }
+
+.character-count.over-limit {
+  color: red;
+}
