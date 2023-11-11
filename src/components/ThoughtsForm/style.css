@@ -27,6 +27,8 @@ input {
   box-sizing: border-box;
   overflow: hidden; /* Prevent overflow of placeholder text */
   padding-top: 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 input::placeholder {

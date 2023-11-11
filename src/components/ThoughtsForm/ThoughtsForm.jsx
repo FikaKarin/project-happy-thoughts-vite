@@ -62,7 +62,7 @@ export default function ThoughtForm({ onFormSubmit }) {
           type='text'
           value={newThought}
           onChange={handleInputChange}
-          placeholder="'If music be the food of love, play on.' - William Shapespear"
+          placeholder="'If music be the food of love, play on.' - William Shapespeare"
         />
         {/* Display character count and limit it to 140 */}
         <div
