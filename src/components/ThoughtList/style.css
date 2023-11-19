@@ -14,6 +14,8 @@
   font-weight: 400;
   width: 550px;
   font-size: 18px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .thought-list button {
