@@ -20,7 +20,7 @@
   width: 100%;
   max-width: calc(100vw - 20px);
 
-  /* Ensure no additional margin or padding */
+  /* Ensure no additional margin */
   margin-left: 0;
   margin-right: 0;
   padding-left: 16px;
