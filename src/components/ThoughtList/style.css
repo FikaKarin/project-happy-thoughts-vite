@@ -5,6 +5,7 @@
 }
 
 .thought {
+  box-sizing: border-box;
   box-shadow: 8px 8px 2px black;
   padding: 14px 18px;
   padding-bottom: 22px;
@@ -15,8 +16,14 @@
   font-size: 18px;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  max-width: 550px; /* Set a maximum width for larger screens */
-  width: 100%; /* Make it take up 100% of the container's width */
+  width: 100%;
+  max-width: calc(100vw - 20px);
+
+  /* Ensure no additional margin or padding */
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .thought-list button {
@@ -70,4 +77,10 @@
   margin-bottom: 18px;
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.241);
+}
+
+@media (min-width: 550px) {
+  .thought {
+    max-width: 550px; /* Adjust as needed for larger screens */
+  }
 }

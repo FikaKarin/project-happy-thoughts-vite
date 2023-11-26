@@ -8,10 +8,11 @@ form {
   flex-direction: column;
   box-shadow: 8px 8px 2px black;
   border: 1px solid black;
-  padding: 12px 32px;
+  padding: 12px 18px; /* Adjust padding for smaller screens */
   background-color: rgba(212, 207, 208, 0.441);
   font-weight: bolder;
-  width: 550px;
+  max-width: 550px; /* Set a maximum width for larger screens */
+  width: 100%; /* Make it take up 100% of its container's width */
 }
 
 label {
