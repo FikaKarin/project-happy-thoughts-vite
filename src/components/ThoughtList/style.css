@@ -69,16 +69,16 @@
 }
 
 .liked-thoughts-count {
-  position: absolute;
+  position: absolute !important;
   width: 140px;
-  justify-content: center;
+  justify-content: center !important;
   background-color: #fec3d8;
   padding: 10px;
   margin-bottom: 18px;
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.241);
-  left: 50%;
-  transform: translateX(-50%); /* Center the element horizontally */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 @media (min-width: 550px) {
