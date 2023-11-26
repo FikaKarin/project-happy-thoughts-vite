@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  flex-direction: column;
 }
 
 .thought {
@@ -69,16 +70,14 @@
 }
 
 .liked-thoughts-count {
-  position: absolute !important;
   width: 140px;
-  justify-content: center !important;
+  justify-content: center;
   background-color: #fec3d8;
   padding: 10px;
   margin-bottom: 18px;
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.241);
-  left: 80% !important;
-  transform: translateX(-50%) !important;
+  align-items: center;
 }
 
 @media (min-width: 550px) {
