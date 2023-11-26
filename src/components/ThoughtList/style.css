@@ -12,10 +12,11 @@
   margin-bottom: 16px;
   border: 1px solid black;
   font-weight: 400;
-  width: 550px;
   font-size: 18px;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  max-width: 550px; /* Set a maximum width for larger screens */
+  width: 100%; /* Make it take up 100% of the container's width */
 }
 
 .thought-list button {
