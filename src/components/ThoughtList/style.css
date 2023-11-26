@@ -77,7 +77,7 @@
   margin-bottom: 18px;
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.241);
-  right: 1% !important;
+  right: 8px !important;
   top: -100%;
   transform: translateX(-50%) !important;
 }
