@@ -77,6 +77,8 @@
   margin-bottom: 18px;
   border-radius: 28px;
   border: 1px solid rgba(0, 0, 0, 0.241);
+  left: 50%;
+  transform: translateX(-50%); /* Center the element horizontally */
 }
 
 @media (min-width: 550px) {
