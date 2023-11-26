@@ -3,6 +3,7 @@ import ThoughtForm from './components/ThoughtsForm/ThoughtsForm';
 import ThoughtList from './components/ThoughtList/ThoughtList';
 import Header from './components/Header/Header';
 import './components/ThoughtsForm/style.css';
+import './components/ThoughtList/style.css'
 
 // Define the API endpoint URL
 const API_URL = 'https://happy-thoughts-ux7hkzgmwa-uc.a.run.app/thoughts';
@@ -84,7 +85,6 @@ export default function App() {
       });
   };
 
-  // Render components based on loading status and return the JSX
   return (
     <>
       {loading ? (
@@ -95,14 +95,14 @@ export default function App() {
       ) : (
         <div className='container'>
           <Header />
-          {/* Pass handleFormSubmit function as a prop to the ThoughtForm component */}
           <ThoughtForm onFormSubmit={handleFormSubmit} />
-          {/* Pass thoughts, handleLike function, and likedThoughts Set as props to the ThoughtList component */}
-          <ThoughtList
-            thoughts={thoughts}
-            onLike={handleLike}
-            likedThoughts={likedThoughts}
-          />
+          <div className='list-container'>
+            <ThoughtList
+              thoughts={thoughts}
+              onLike={handleLike}
+              likedThoughts={likedThoughts}
+            />
+          </div>
         </div>
       )}
     </>

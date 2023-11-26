@@ -61,7 +61,6 @@
 }
 
 .liked-thoughts-count {
-  display: flex;
   position: absolute;
   width: 140px;
   justify-content: center;
